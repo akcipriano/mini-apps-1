@@ -4,10 +4,11 @@ table, tr, td {
 }
 table {
   width: 75%;
-  margin: auto
+  margin: auto;
 }
 th, td {
   padding: 75px;
+  text-align: center;
 }
 h1 {
   text-align: center;
