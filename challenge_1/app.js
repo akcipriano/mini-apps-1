@@ -25,11 +25,10 @@ function setMarker(e) {
     if (winner === false && counter === 9) {
       setTimeout(() => alert("It's a draw! Play again."), 50);
     }
-    console.log(counter)
   }
 }
 
-//checks all possible rows for a three-of-kind
+//checks all possible rows for a three-in-a-row
 function checkForWinner() {
   threeInARow(1, 2, 3);
   threeInARow(4 ,5, 6);
@@ -41,7 +40,7 @@ function checkForWinner() {
   threeInARow(3, 5, 7);
 }
 
-//checks one row for a three-of-a-kind, if found, game resets
+//checks one row for a three-in-a-row; if found, game resets
 function threeInARow (a, b, c) {
   var idValue = document.getElementById(a).innerHTML;
   var idValueTwo = document.getElementById(b).innerHTML;
