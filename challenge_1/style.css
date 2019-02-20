@@ -13,3 +13,7 @@ th, td {
 h1 {
   text-align: center;
 }
+button {
+  margin: 20px auto;
+  display: block;
+}

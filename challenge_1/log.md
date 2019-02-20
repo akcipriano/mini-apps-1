@@ -5,3 +5,4 @@
 -html tables:
 -linking css stylesheets to html page
 -how to get clicked element in javascript (REVIEW) => target event property
+-how to center a button (or anything): margin: 20px auto;
