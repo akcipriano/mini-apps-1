@@ -10,3 +10,9 @@ var app = express();
 app.use(express.static('client'));
 
 app.listen(3000);
+
+console.log('listening on port 3000');
+
+app.post('/', function (req, res) {
+  res.send('Success!'); //NEED TO CHANGE
+})

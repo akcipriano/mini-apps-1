@@ -5,3 +5,10 @@
 //  but child objects might not contain the same properties. In all cases, every property you encounter must be present in the final CSV output.
 // You may also assume that child records in the JSON will always be in a property called `children`.
 
+// $(document).ready(() => {
+//   console.log('Doc is ready')
+//   $('button').on('click', () => {
+//     console.log('Trial')
+//   })
+//   // $('input').click(function (){console.log('Trial')})
+// })
