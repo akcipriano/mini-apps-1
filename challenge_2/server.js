@@ -4,3 +4,9 @@
 //  In other words, all sibling records at a particular level of the hierarchy will have the same set of properties,
 //  but child objects might not contain the same properties. In all cases, every property you encounter must be present in the final CSV output.
 // You may also assume that child records in the JSON will always be in a property called `children`.
+var express = require('express');
+var app = express();
+
+app.use(express.static('client'));
+
+app.listen(3000);
