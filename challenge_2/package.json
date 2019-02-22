@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/akcipriano/rpt12-mini-apps-1#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4"
   }
 }

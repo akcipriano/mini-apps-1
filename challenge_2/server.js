@@ -5,14 +5,25 @@
 //  but child objects might not contain the same properties. In all cases, every property you encounter must be present in the final CSV output.
 // You may also assume that child records in the JSON will always be in a property called `children`.
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.use(express.static('client'));
 
-app.listen(3000);
+app.listen(3000, console.log('listening on port 3000'));
 
-console.log('listening on port 3000');
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/client/index.html');
+  console.log('RES', res)
+  console.log('REQ', req)
+})
 
 app.post('/', function (req, res) {
-  res.send('Success!'); //NEED TO CHANGE
+  console.log('POST RES', res)
+  console.log('POST REQ', req)
+  console.log('req.body', req.body);
+  res.sendFile(__dirname + '/client/index.html');
 })
