@@ -17,13 +17,96 @@ app.listen(3000, console.log('listening on port 3000'));
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/index.html');
-  console.log('RES', res)
-  console.log('REQ', req)
-})
+});
 
 app.post('/', function (req, res) {
-  console.log('POST RES', res)
-  console.log('POST REQ', req)
-  console.log('req.body', req.body);
-  res.sendFile(__dirname + '/client/index.html');
-})
+  var textInput = JSON.parse(req.body['text_input']);
+  textInput = JSONtoCSV(textInput);
+  console.log('Final...................', textInput);
+  console.log('req.body', typeof (req.body['text_input']));
+  // res.sendFile(__dirname + '/client/index.html');
+  res.send(textInput);
+});
+
+function JSONtoCSV (data) {
+  var result = getDataColumns(data) + getColumnVals(data);
+  return result;
+}
+
+function getDataColumns (data) {
+  var csv = '';
+  var tempHolder = [];
+  for (var key in data){
+    if (key !== 'children') {
+      tempHolder.push(key);
+    }
+  }
+  csv += tempHolder.join(',');
+
+  csv += '<br>';
+
+  return csv;
+}
+
+function getColumnVals (data) {
+  var csv = '';
+  var tempHolder = [];
+  for (var key in data) {
+    if (key !== 'children') {
+      tempHolder.push(data[key]);
+    }
+  }
+  csv += tempHolder.join(',');
+
+  csv += '<br>';
+
+  if (data.children) {
+    for (var i = 0; i < data.children.length; i++) {
+      csv += getColumnVals(data.children[i]);
+    }
+  }
+  return csv;
+}
+
+// function JSONtoCSV (data) {
+//   var result = getDataColumns(data) + getColumnVals(data);
+//   return result
+// }
+
+// function getDataColumns (data) {
+//   var csv = ''
+//   for (var key in data){
+//     if (key !== 'children') {
+//       if (key === 'sales') {
+//         csv += key;
+//       } else {
+//           csv += key + ','
+//         }
+//      }
+//   }
+//   // csv += '\r\n'
+//   csv += '<br>'
+
+//   return csv;
+// }
+
+// function getColumnVals (data) {
+//   var csv = '';
+//   for (var key in data) {
+//     if (key !== 'children') {
+//       if (key === 'sales') {
+//         // csv += data[key] + '\r\n'
+//         csv += data[key] + '<br>'
+//     } else {
+//         csv += data[key] + ','
+//       }
+//     }
+//   }
+
+//   if (data.children) {
+//     for (var i = 0; i < data.children.length; i++) {
+//       csv += getColumnVals(data.children[i]);
+//     }
+//   }
+//   return csv;
+// }
