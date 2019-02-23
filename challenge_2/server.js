@@ -15,17 +15,35 @@ app.use(express.static('client'));
 
 app.listen(3000, console.log('listening on port 3000'));
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/client/index.html');
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/client/index.html');
+// });
 
 app.post('/', function (req, res) {
   var textInput = JSON.parse(req.body['text_input']);
   textInput = JSONtoCSV(textInput);
-  console.log('Final...................', textInput);
-  console.log('req.body', typeof (req.body['text_input']));
+
+  res.send(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <title> CSV Report Generator</title>
+      </head>
+
+      <body>
+        <form method="POST" action="/">
+          <textarea rows="8" cols="80" name="text_input"></textarea><br><br>
+          <button type="submit"> Submit </button>
+        </form>
+
+        <p id="results">${textInput}</p>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+      </body>
+    </html>`);
   // res.sendFile(__dirname + '/client/index.html');
-  res.send(textInput);
 });
 
 function JSONtoCSV (data) {
@@ -42,9 +60,7 @@ function getDataColumns (data) {
     }
   }
   csv += tempHolder.join(',');
-
   csv += '<br>';
-
   return csv;
 }
 
@@ -57,7 +73,6 @@ function getColumnVals (data) {
     }
   }
   csv += tempHolder.join(',');
-
   csv += '<br>';
 
   if (data.children) {
@@ -67,46 +82,3 @@ function getColumnVals (data) {
   }
   return csv;
 }
-
-// function JSONtoCSV (data) {
-//   var result = getDataColumns(data) + getColumnVals(data);
-//   return result
-// }
-
-// function getDataColumns (data) {
-//   var csv = ''
-//   for (var key in data){
-//     if (key !== 'children') {
-//       if (key === 'sales') {
-//         csv += key;
-//       } else {
-//           csv += key + ','
-//         }
-//      }
-//   }
-//   // csv += '\r\n'
-//   csv += '<br>'
-
-//   return csv;
-// }
-
-// function getColumnVals (data) {
-//   var csv = '';
-//   for (var key in data) {
-//     if (key !== 'children') {
-//       if (key === 'sales') {
-//         // csv += data[key] + '\r\n'
-//         csv += data[key] + '<br>'
-//     } else {
-//         csv += data[key] + ','
-//       }
-//     }
-//   }
-
-//   if (data.children) {
-//     for (var i = 0; i < data.children.length; i++) {
-//       csv += getColumnVals(data.children[i]);
-//     }
-//   }
-//   return csv;
-// }
