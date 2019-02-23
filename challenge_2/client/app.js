@@ -5,37 +5,29 @@
 //  but child objects might not contain the same properties. In all cases, every property you encounter must be present in the final CSV output.
 // You may also assume that child records in the JSON will always be in a property called `children`.
 
-// $(document).ready(() => {
-//   console.log('Doc is ready')
-//   $('button').on('click', () => {
-//     console.log('Trial')
-//   })
-//   // $('input').click(function (){console.log('Trial')})
-// })
+$('form').on('submit', function(e){
+  e.preventDefault();
+  var file = document.getElementById('textInput').files[0];
 
-
-// $(document).ready(() => {
-//   $('button').on('click', (event)=>{
-//     console.log('button click')
-//     $.ajax({
-//        method: 'POST',
-//        url: '/form',
-//        data: document.getElementById('input').textInput.val,
-//       // data: $('#input').val,
-//        success: function(data) {
-//          console.log('data', data);
-//        }
-//     })
-//   })
-// })
-
-// $(document).ready(function() {
-//   $("#driver").click(function(event){
-//      $.ajax( {
-//         url:'result.html',
-//         success:function(data) {
-//            $('#stage').html(data);
-//         }
-//      });
-//   });
-// });
+  if (file) {
+    // create reader
+    var reader = new FileReader();
+    reader.readAsText(file);
+    // after browser reads file:
+    reader.onload = function(e) {
+      // file content
+      var text = reader.result;
+      $.ajax({
+        method: 'POST',
+        url: '/form',
+        data: {textInput: text},
+        success: function(data) {
+          console.log('POST SUCCESS');
+          document.getElementById('results').innerHTML = data;
+        }
+      });
+    };
+  } else {
+    alert('Unable to access data');
+  }
+});
