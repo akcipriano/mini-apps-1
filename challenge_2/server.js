@@ -19,8 +19,8 @@ app.listen(3000, console.log('listening on port 3000'));
 //   res.sendFile(__dirname + '/client/index.html');
 // });
 
-app.post('/', function (req, res) {
-  var textInput = JSON.parse(req.body['text_input']);
+app.post('/form', function (req, res) {
+  var textInput = JSON.parse(req.body['textInput']);
   textInput = JSONtoCSV(textInput);
 
   res.send(`<!DOCTYPE html>
@@ -31,12 +31,12 @@ app.post('/', function (req, res) {
       </head>
 
       <body>
-        <form method="POST" action="/">
-          <textarea rows="8" cols="80" name="text_input"></textarea><br><br>
+        <form method="POST" action="/form">
+          <textarea rows="8" cols="80" name="textInput"></textarea><br><br>
           <button type="submit"> Submit </button>
         </form>
 
-        <p id="results">${textInput}</p>
+        <output id="results">${textInput}</output>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -44,6 +44,9 @@ app.post('/', function (req, res) {
       </body>
     </html>`);
   // res.sendFile(__dirname + '/client/index.html');
+  // console.log(textInput);
+  // console.log('REQ BODY', req.body);
+  // res.end();
 });
 
 function JSONtoCSV (data) {

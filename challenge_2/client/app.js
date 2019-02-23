@@ -13,3 +13,29 @@
 //   // $('input').click(function (){console.log('Trial')})
 // })
 
+
+// $(document).ready(() => {
+//   $('button').on('click', (event)=>{
+//     console.log('button click')
+//     $.ajax({
+//        method: 'POST',
+//        url: '/form',
+//        data: document.getElementById('input').textInput.val,
+//       // data: $('#input').val,
+//        success: function(data) {
+//          console.log('data', data);
+//        }
+//     })
+//   })
+// })
+
+// $(document).ready(function() {
+//   $("#driver").click(function(event){
+//      $.ajax( {
+//         url:'result.html',
+//         success:function(data) {
+//            $('#stage').html(data);
+//         }
+//      });
+//   });
+// });
