@@ -1,4 +1,4 @@
-$('form').on('submit', function(e){
+$('form').on('submit', (e) => {
   e.preventDefault();
   var file = document.getElementById('textInput').files[0];
 
@@ -7,14 +7,14 @@ $('form').on('submit', function(e){
     var reader = new FileReader();
     reader.readAsText(file);
     // this will run after browser reads file
-    reader.onload = function(e) {
+    reader.onload = (e) => {
       // the file content
       var text = reader.result;
       $.ajax({
         method: 'POST',
         url: '/form',
         data: {textInput: text},
-        success: function(serverData) {
+        success: (serverData) => {
           console.log('POST SUCCESS');
           // adds converted data to the page
           document.getElementById('results').innerHTML = serverData;

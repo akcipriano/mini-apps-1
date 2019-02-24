@@ -1,4 +1,4 @@
-var convert = require('./converter')
+var convert = require('./converter');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -14,7 +14,7 @@ app.get('/form', (req, res) => {
   res.sendFile(__dirname + '/client/index.html');
 });
 
-app.post('/form', function (req, res) {
+app.post('/form', (req, res) => {
   var textInput = JSON.parse(req.body['textInput']);
   textInput = convert.JSONtoCSV(textInput);
 
