@@ -1,15 +1,14 @@
-
 $('form').on('submit', function(e){
   e.preventDefault();
   var file = document.getElementById('textInput').files[0];
 
   if (file) {
-    // create reader
+    // creates reader to read file content
     var reader = new FileReader();
     reader.readAsText(file);
-    // after browser reads file:
+    // this will run after browser reads file
     reader.onload = function(e) {
-      // file content
+      // the file content
       var text = reader.result;
       $.ajax({
         method: 'POST',
