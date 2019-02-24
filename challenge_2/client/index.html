@@ -6,15 +6,17 @@
   </head>
 
   <body>
-      <form id="input" name="text" enctype="multipart/form-data">
+      <form id="input" name="text" enctype="multipart/form-data" action="/form">
         <input type="file" name="textInput" id="textInput">
     <!-- <form method="POST" action="/form">
       <textarea rows="8" cols="80" name="textInput"></textarea> -->
       <br><br>
       <button type="submit"> Submit </button>
     </form>
-    <br><br>
+    <br>
 
+    <a id="a" download="Download.csv" type="text/csv"></a>
+    <br>
     <output id="results"></output>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

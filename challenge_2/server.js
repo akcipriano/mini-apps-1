@@ -35,7 +35,7 @@ function getDataColumns (data) {
     }
   }
   csv += tempHolder.join(',');
-  csv += '<br>';
+  csv += '\r\n';
   return csv;
 }
 
@@ -48,7 +48,7 @@ function getColumnVals (data) {
     }
   }
   csv += tempHolder.join(',');
-  csv += '<br>';
+  csv += '\r\n';
 
   if (data.children) {
     for (var i = 0; i < data.children.length; i++) {
