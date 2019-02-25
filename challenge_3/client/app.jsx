@@ -2,7 +2,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        React Test
+        <button id="checkout" style={{margin: 25}}>Checkout</button>
       </div>
     )
   }
@@ -10,5 +10,5 @@ class App extends React.Component {
 
 ReactDOM.render(
   <App />,
-  document.getElementById('checkout')
+  document.getElementById('mainpage')
 );
