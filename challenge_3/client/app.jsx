@@ -2,33 +2,80 @@ class App extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      currentPage: 'mainpage'
+      currentPage: 'mainpage',
+      name: 'Al Pal',
+      email: 'alpal@ymail.com',
+      password: '123',
+      address1: '123 N Shore',
+      address2: 'Apt 7',
+      city: 'Shore',
+      state: 'ZA',
+      zipcode: '12345',
+      phone: '9095671234',
+      creditCard: '1234567890',
+      expiration: '04/20',
+      cvv: '123',
+      billingZip: '12345',
     }
-    this.handleNextPageClick = this.handleNextPageClick.bind(this)
+    this.handleCheckoutClick = this.handleCheckoutClick.bind(this)
+    this.handleF1NextClick = this.handleF1NextClick.bind(this)
+    this.handleF2NextClick = this.handleF2NextClick.bind(this)
+    this.handleF3NextClick = this.handleF3NextClick.bind(this)
+    this.handlePurchaseClick = this.handlePurchaseClick.bind(this)
   }
 
-  handleNextPageClick() {
-    if (this.state.currentPage === 'mainpage') {
-      this.setState(() => ({
-        currentPage: 'f1Form'
-      }))
-    } else if (this.state.currentPage === 'f1Form') {
-      this.setState(() => ({
-        currentPage: 'f2Form'
-      }))
-    } else if (this.state.currentPage === 'f2Form') {
-      this.setState(() => ({
-        currentPage: 'f3Form'
-      }))
-    } else if (this.state.currentPage === 'f3Form') {
-      this.setState(() => ({
-        currentPage: 'confirmation'
-      }))
-    } else {
-      this.setState(() => ({
-        currentPage: 'mainpage'
-      }))
-    }
+  // handleNextPageClick() {
+  //   if (this.state.currentPage === 'mainpage') {
+  //     this.setState(() => ({
+  //       currentPage: 'f1Form'
+  //     }))
+  //   } else if (this.state.currentPage === 'f1Form') {
+  //     this.setState(() => ({
+  //       currentPage: 'f2Form'
+  //     }))
+  //   } else if (this.state.currentPage === 'f2Form') {
+  //     this.setState(() => ({
+  //       currentPage: 'f3Form'
+  //     }))
+  //   } else if (this.state.currentPage === 'f3Form') {
+  //     this.setState(() => ({
+  //       currentPage: 'confirmation'
+  //     }))
+  //   } else {
+  //     this.setState(() => ({
+  //       currentPage: 'mainpage'
+  //     }))
+  //   }
+  // }
+
+  handleCheckoutClick() {
+    this.setState(() => ({
+      currentPage: 'f1Form'
+    }))
+  }
+
+  handleF1NextClick() {
+    this.setState(() => ({
+      currentPage: 'f2Form'
+    }))
+  }
+
+  handleF2NextClick() {
+    this.setState(() => ({
+      currentPage: 'f3Form'
+    }))
+  }
+
+  handleF3NextClick() {
+    this.setState(() => ({
+      currentPage: 'confirmation'
+    }))
+  }
+
+  handlePurchaseClick() {
+    this.setState(() => ({
+      currentPage: 'mainpage'
+    }))
   }
 
   render() {
@@ -37,7 +84,7 @@ class App extends React.Component {
         <div>
           <h1 style={{textDecoration: 'underline'}}> Check Out </h1>
           <h3> Press below to proceed with purchase: </h3>
-          <button id="checkout" style={{margin: 10}} onClick={this.handleNextPageClick}> Checkout </button>
+          <button id="checkout" style={{margin: 10}} onClick={this.handleCheckoutClick}> Checkout </button>
         </div>
       )
     }
@@ -48,11 +95,11 @@ class App extends React.Component {
           <h4> Step 1 of 3 </h4>
           <h3> Pesonal Information </h3>
           <form>
-            Name: <br /> <input type="text" name="name"></input><br />
-            Email: <br /> <input type="email" name="email"></input><br />
-            Password: <br /> <input type="password" name="password"></input>
+            Name: <br /> <input type="text" name="name" /><br />
+            Email: <br /> <input type="email" name="email" /><br />
+            Password: <br /> <input type="password" name="password" />
           </form>
-          <button id="f1Form" style={{margin: 10}} onClick={this.handleNextPageClick}> Next </button>
+          <button id="f1Form" style={{margin: 10}} onClick={this.handleF1NextClick}> Next </button>
         </div>
       )
     }
@@ -63,14 +110,14 @@ class App extends React.Component {
           <h4> Step 2 of 3 </h4>
           <h3> Shipping Information </h3>
           <form>
-            Address: <br /> <input type="text" name="address1" placeholder="Address Line 1"></input><br />
-            <input type="text" name="address2" placeholder="Address Line 2"></input><br />
-            City: <br /> <input type="text" name="city"></input><br />
-            State: <br /> <input type="text" name="state"></input><br />
-            Zip Code: <br /> <input type="text" name="zipcode"></input><br />
-            Phone Number: <br /> <input type="tel" name="phone"></input>
+            Address: <br /> <input type="text" name="address1" placeholder="Address Line 1" /><br />
+            <input type="text" name="address2" placeholder="Address Line 2" /><br />
+            City: <br /> <input type="text" name="city" /><br />
+            State: <br /> <input type="text" name="state" /><br />
+            Zip Code: <br /> <input type="text" name="zipcode" /><br />
+            Phone Number: <br /> <input type="tel" name="phone" />
           </form>
-          <button id="f2Form" style={{margin: 10}} onClick={this.handleNextPageClick}> Next </button>
+          <button id="f2Form" style={{margin: 10}} onClick={this.handleF2NextClick}> Next </button>
         </div>
       )
     }
@@ -81,15 +128,15 @@ class App extends React.Component {
           <h4> Step 3 of 3 </h4>
           <h3> Payment Information </h3>
           <form>
-            Credit Card Number: <br /> <input type="text" name="creditcard"></input>
+            Credit Card Number: <br /> <input type="text" name="creditcard" />
             <br />
-            Expiration Date: <br /> <input type="text" name="date"></input>
+            Expiration Date: <br /> <input type="text" name="date" placeholder="mm/yy" />
             <br />
-            CVV: <br /> <input type="text" name="cvv"></input>
+            CVV: <br /> <input type="text" name="cvv" />
             <br />
-            Billing Zip Code: <br /> <input type="text" name="billingzipcode"></input>
+            Billing Zip Code: <br /> <input type="text" name="billingzipcode" />
           </form>
-          <button id="f3Form" style={{margin: 10}} onClick={this.handleNextPageClick}> Next </button>
+          <button id="f3Form" style={{margin: 10}} onClick={this.handleF3NextClick}> Next </button>
         </div>
       )
     }
@@ -100,21 +147,21 @@ class App extends React.Component {
         <div>
           <h3> Confirmation Page </h3>
           <h4> Personal Information </h4>
-          Name: <br />
-          Email: <br />
+          Name: {this.state.name} <br />
+          Email: {this.state.email} <br />
           <h4> Shipping Information </h4>
-          Address: <br />
-          City: <br />
-          State: <br />
-          Zip Code: <br />
-          Phone Number: <br />
+          Address: {this.state.address1} {this.state.address2} <br />
+          City: {this.state.city} <br />
+          State: {this.state.state} <br />
+          Zip Code: {this.state.zipcode} <br />
+          Phone Number: {this.state.phone} <br />
           <h4>Payment Information</h4>
-          Credit Care Number: <br />
-          Expiration Date: <br />
-          CVV: <br />
-          Billing Zip Code: <br />
+          Credit Card Number: {this.state.creditCard} <br />
+          Expiration Date: {this.state.expiration} <br />
+          CVV: {this.state.cvv} <br />
+          Billing Zip Code: {this.state.billingZip} <br />
 
-          <button id="purchase" style={{margin: 10}} onClick={this.handleNextPageClick}> Purchase </button>
+          <button id="purchase" style={{margin: 10}} onClick={this.handlePurchaseClick}> Purchase </button>
         </div>
       )
     }
