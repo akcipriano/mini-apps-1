@@ -3,6 +3,35 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var app = express();
 
+// server set up
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(express.static('public'));
+
+app.listen(8000, () => console.log('listening on port 8000'));
+
+app.get('/checkout', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.post('/form1', (req, res) => {
+  console.log('REQ.BODY FORM 1-----------------------',req.body);
+
+  res.end();
+});
+
+app.post('/form2', (req, res) => {
+  console.log('REQ.BODY FORM 2-----------------------',req.body);
+
+  res.end();
+});
+
+app.post('/form3', (req, res) => {
+  console.log('REQ.BODY FORM 3-----------------------',req.body);
+
+  res.end();
+});
+
 // mySQL connection
 var db = mysql.createConnection({
   host: 'localhost',
@@ -28,15 +57,10 @@ db.connect((err) => {
         db.query('CREATE DATABASE checkout', (err, result) => {
           if (err) throw err;
           console.log('New Checkout database created');
+
         });
       });
     }
   });
 });
 
-// server set up
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-app.use(express.static('public'));
-
-app.listen(8000, () => console.log('listening on port 8000'));

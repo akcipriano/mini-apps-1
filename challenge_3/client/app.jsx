@@ -15,7 +15,7 @@ class App extends React.Component {
       creditCard: '',
       expiration: '',
       cvv: '',
-      billingZip: '',
+      billingZip: ''
     }
     // this.handleCheckoutClick = this.handleCheckoutClick.bind(this);
     // this.handleF1NextClick = this.handleF1NextClick.bind(this);
@@ -75,31 +75,78 @@ class App extends React.Component {
       this.setState(() => ({
         currentPage: 'f2Form'
       }))
+      fetch('/form1', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: this.state.individual,
+          email: this.state.email
+        }),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
     } else if (this.state.currentPage === 'f2Form') {
       this.setState(() => ({
         currentPage: 'f3Form'
       }))
+      fetch('/form2', {
+        method: 'POST',
+        body: JSON.stringify({
+          address1: this.state.address1,
+          address2: this.state.address2,
+          city: this.state.city,
+          state: this.state.state,
+          zipcode: this.state.zipcode,
+          phone: this.state.phone,
+        }),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
     } else if (this.state.currentPage === 'f3Form') {
       this.setState(() => ({
         currentPage: 'confirmation'
       }))
+      fetch('/form3', {
+        method: 'POST',
+        body: JSON.stringify({
+          creditCard: this.state.creditCard,
+          expiration: this.state.expiration,
+          cvv: this.state.city,
+          billingZip: this.state.billingZip,
+        }),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
     } else {
       this.setState(() => ({
-        currentPage: 'mainpage'
+        currentPage: 'mainpage',
+        individual: '',
+        email: '',
+        password: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zipcode: '',
+        phone: '',
+        creditCard: '',
+        expiration: '',
+        cvv: '',
+        billingZip: ''
       }))
     }
   }
 
   handleInputChange(event){
-    var target = event.target;
-    var value = target.value;
-    var name = target.name;
+    var value = event.target.value;
+    var name = event.target.name;
 
     this.setState({
       [name]: value
     })
   }
-
 
   render() {
     if (this.state.currentPage === 'mainpage') {
@@ -122,7 +169,7 @@ class App extends React.Component {
             Email: <br /> <input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} /><br />
             Password: <br /> <input type="password" name="password" onChange={this.handleInputChange} />
           </form>
-          <button id="f1Form" style={{margin: 10}} onClick={this.handleNextPageClick}> Next </button>
+          <button type="submit" id="f1Form" style={{margin: 10}} onClick={this.handleNextPageClick}> Next </button>
         </div>
       )
     }
