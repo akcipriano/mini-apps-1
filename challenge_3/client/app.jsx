@@ -38,7 +38,8 @@ class App extends React.Component {
         method: 'POST',
         body: JSON.stringify({
           name: this.state.individual,
-          email: this.state.email
+          email: this.state.email,
+          password: this.state.password
         }),
         headers: {
           'Content-type': 'application/json'
@@ -95,6 +96,10 @@ class App extends React.Component {
         cvv: '',
         billingZip: ''
       }))
+      fetch('/purchase', {
+        method: 'POST',
+        body: {}
+      })
     }
   }
 
