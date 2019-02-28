@@ -66,31 +66,25 @@ var db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) throw err;
-  console.log('Connected to database!');
-  // If a checkout database exists, it will be replaced (deleted then created again)
-    // This can be uodated once app is fully functional; won't need to keep recreating the db
-  db.query('USE checkout', (err, result) => {
+  console.log('Connected to mySQL!');
+
+  db.query('DROP DATABASE checkout', (err, result) => {
     if (err) {
-      db.query('CREATE DATABASE checkout', (err, result) => {
-        if (err) throw err;
-        console.log('Checkout database created');
-      });
-    } else {
-      db.query('DROP DATABASE checkout', (err, result) => {
-        if (err) throw err;
-        console.log('Previous Checkout database deleted')
-        db.query('CREATE DATABASE checkout', (err, result) => {
-          if (err) throw err;
-          console.log('New Checkout database created');
-          db.query('USE checkout', (err, result) => {
-            db.query('CREATE TABLE IF NOT EXISTS purchases (purchase_id VARCHAR(6), name VARCHAR(40), email VARCHAR(50), password VARCHAR(50), address1 VARCHAR(50), address2 VARCHAR(50), city VARCHAR(25), state VARCHAR(15), zipcode VARCHAR(15), phone VARCHAR(20), credit_card VARCHAR(16), expiration VARCHAR(10), cvv VARCHAR(10), billing_zip VARCHAR(10), PRIMARY KEY (purchase_id))', (err, res) => {
-              if (err) throw err;
-              console.log('Purchase Table created')
-            })
-          })
-        });
-      });
+      console.log('Checkout does not exist');
     }
+  });
+
+  db.query('CREATE DATABASE checkout', (err, result) => {
+    if (err)throw err;
+    console.log('Checkout database created');
+    db.query('USE checkout', (err, result) => {
+      if (err) throw err;
+      console.log('Using checkout database');
+      db.query('CREATE TABLE purchases (purchase_id VARCHAR(6), name VARCHAR(40), email VARCHAR(50), password VARCHAR(50), address1 VARCHAR(50), address2 VARCHAR(50), city VARCHAR(25), state VARCHAR(15), zipcode VARCHAR(15), phone VARCHAR(20), credit_card VARCHAR(16), expiration VARCHAR(10), cvv VARCHAR(10), billing_zip VARCHAR(10))', (err, res) => {
+        if (err) throw err;
+        console.log('Purchases table created');
+      });
+    });
   });
 });
 
