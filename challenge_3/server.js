@@ -14,6 +14,16 @@ app.get('/checkout', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+var userId = 1;
+app.post('/newuser', (req, res) => {
+  console.log('This is happening');
+  db.query(`INSERT INTO purchases (purchase_id) VALUES (${userId})`, (err, result) => {
+    if (err) throw err;
+    console.log('User added');
+  })
+  res.end();
+});
+
 app.post('/form1', (req, res) => {
   console.log('REQ.BODY FORM 1-----------------------',req.body);
 
@@ -57,7 +67,12 @@ db.connect((err) => {
         db.query('CREATE DATABASE checkout', (err, result) => {
           if (err) throw err;
           console.log('New Checkout database created');
-
+          db.query('USE checkout', (err, result) => {
+            db.query('CREATE TABLE IF NOT EXISTS purchases (purchase_id INT, name VARCHAR(30), email VARCHAR(50), password VARCHAR(50), address1 VARCHAR(50), address2 VARCHAR(50), city VARCHAR(25), state VARCHAR(15), zipcode VARCHAR(10), phone VARCHAR(15), credit_card VARCHAR(16), expiration VARCHAR(5), cvv VARCHAR(5), billing_zip VARCHAR(10), PRIMARY KEY (purchase_id))', (err, res) => {
+              if (err) throw err;
+              console.log('Purchase Table created')
+            })
+          })
         });
       });
     }

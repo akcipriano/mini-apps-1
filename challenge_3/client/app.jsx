@@ -17,60 +17,19 @@ class App extends React.Component {
       cvv: '',
       billingZip: ''
     }
-    // this.handleCheckoutClick = this.handleCheckoutClick.bind(this);
-    // this.handleF1NextClick = this.handleF1NextClick.bind(this);
-    // this.handleF2NextClick = this.handleF2NextClick.bind(this);
-    // this.handleF3NextClick = this.handleF3NextClick.bind(this);
-    // this.handlePurchaseClick = this.handlePurchaseClick.bind(this);
     this.handleNextPageClick = this.handleNextPageClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-
-  // handleCheckoutClick() {
-  //   this.setState({
-  //     currentPage: 'f1Form'
-  //   });
-  // }
-
-  // handleF1NextClick(event) {
-  //   this.setState({
-  //     currentPage: 'f2Form',
-  //   })
-  // }
-
-  // handleF2NextClick(event) {
-  //   this.setState({
-  //     currentPage: 'f3Form',
-  //     address1: 'updated',
-  //     address2: 'updated',
-  //     city: 'updated',
-  //     state: 'updated',
-  //     zipcode: 'updated',
-  //     phone: 'updated',
-  //   })
-  // }
-
-  // handleF3NextClick() {
-  //   this.setState({
-  //     currentPage: 'confirmation',
-  //     creditCard: 'updated',
-  //     expiration: 'updated',
-  //     cvv: 'updated',
-  //     billingZip: 'updated'
-  //   })
-  // }
-
-  // handlePurchaseClick() {
-  //   this.setState({
-  //     currentPage: 'mainpage'
-  //   })
-  // }
 
   handleNextPageClick() {
     if (this.state.currentPage === 'mainpage') {
       this.setState(() => ({
         currentPage: 'f1Form'
       }))
+      fetch('/newuser', {
+        method: 'POST',
+        body: {}
+      })
     } else if (this.state.currentPage === 'f1Form') {
       this.setState(() => ({
         currentPage: 'f2Form'
