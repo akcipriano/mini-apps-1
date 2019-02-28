@@ -127,13 +127,13 @@ class App extends React.Component {
       return (
         <div>
           <h4> Step 1 of 3 </h4>
-          <h3> Pesonal Information </h3>
+          <h3> Create an Account </h3>
           <form>
             Name: <br /> <input type="text" name="individual" value={this.state.individual} onChange={this.handleInputChange} /><br />
             Email: <br /> <input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} /><br />
             Password: <br /> <input type="password" name="password" onChange={this.handleInputChange} />
           </form>
-          <button type="submit" id="f1Form" style={{margin: 10}} onClick={this.handleNextPageClick}> Next </button>
+          <button id="f1Form" style={{margin: 10}} onClick={this.handleNextPageClick}> Next </button>
         </div>
       )
     }

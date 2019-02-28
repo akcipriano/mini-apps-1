@@ -16,7 +16,6 @@ app.get('/checkout', (req, res) => {
 
 var userId = 1;
 app.post('/newuser', (req, res) => {
-  console.log('This is happening');
   db.query(`INSERT INTO purchases (purchase_id) VALUES (${userId})`, (err, result) => {
     if (err) throw err;
     console.log('User added');
@@ -25,7 +24,6 @@ app.post('/newuser', (req, res) => {
 });
 
 app.post('/form1', (req, res) => {
-  console.log('REQ.BODY FORM 1-----------------------',req.body);
   db.query(`UPDATE purchases SET name = '${req.body.name}', email = '${req.body.email}', password = '${req.body.password}' WHERE purchase_id='${userId}'`, (err, result) => {
     if (err) throw err;
     console.log('Account Information added');
@@ -34,7 +32,6 @@ app.post('/form1', (req, res) => {
 });
 
 app.post('/form2', (req, res) => {
-  console.log('REQ.BODY FORM 2-----------------------',req.body);
   db.query(`UPDATE purchases SET address1 = '${req.body.address1}', address2 = '${req.body.address2}', city = '${req.body.city}', state = '${req.body.state}', zipcode = '${req.body.zipcode}', phone = '${req.body.phone}' WHERE purchase_id='${userId}'`, (err, result) => {
     if (err) throw err;
     console.log('Shipping Information added');
@@ -43,7 +40,6 @@ app.post('/form2', (req, res) => {
 });
 
 app.post('/form3', (req, res) => {
-  console.log('REQ.BODY FORM 3-----------------------',req.body);
   db.query(`UPDATE purchases SET credit_card = '${req.body.creditCard}', expiration = '${req.body.expiration}', cvv = '${req.body.cvv}', billing_zip = '${req.body.billingZip}' WHERE purchase_id='${userId}'`, (err, result) => {
     if (err) throw err;
     console.log('Payment Information added');
