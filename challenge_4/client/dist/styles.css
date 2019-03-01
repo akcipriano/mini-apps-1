@@ -1,0 +1,31 @@
+#main {
+  position: relative;
+  float:none;
+  border-style: solid;
+  height: 470px;
+  width: 470px;
+  border-color: #ffffff;
+  margin: auto;
+}
+
+#header {
+  text-align: center;
+}
+
+.circle {
+  height: 60px;
+  width: 60px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.square {
+  height: 60px;
+  width: 60px;
+  border-color: rgb(18, 96, 116);
+  border-style: solid;
+  display: inline-block;
+  position: relative;
+}
