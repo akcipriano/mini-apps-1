@@ -49,6 +49,20 @@ class App extends React.Component {
         }
       }
     }
+    //scans for a winner vertically
+    for (var i = 0; i < 6; i++) {
+      var count = 0;
+      for (var k = 0; k < this.board.length; k++) {
+        if (this.board[k][i] === color) {
+          count++;
+          if (count === 4) {
+            setTimeout(() => alert(`${color}, you win!`), 25);
+          }
+        } else {
+          count = 0;
+        }
+      }
+    }
   }
 
   getColumnId(id) {
