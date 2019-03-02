@@ -26,8 +26,7 @@
   width: 60px;
   border-color: rgb(18, 96, 116);
   border-style: solid;
-  /* display: inline-block; */
-  /* position: relative; */
+  background-color: rgb(18, 96, 116);
 }
 
 .column {

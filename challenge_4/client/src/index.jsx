@@ -1,9 +1,13 @@
 import Column from './components/column.jsx';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleCircleClick = this.handleCircleClick.bind(this);
+    this.getColumnId = this.getColumnId.bind(this);
+    // this.checkForFreeSpace = this.checkForFreeSpace.bind(this);
+    this.columnId = '';
     this.columns = [1, 2, 3, 4, 5, 6, 7];
     this.rows = [6, 5, 4, 3, 2, 1];
     this.board = [
@@ -47,38 +51,77 @@ class App extends React.Component {
     }
   }
 
-  handleCircleClick(event) {
-    var targetId = document.getElementById(event.target.id).id;
-
-    if (event.target.style.backgroundColor === 'red' || event.target.style.backgroundColor === 'yellow') {
-      alert('Space occupied, choose another circle');
-    } else {
-      if (this.state.color === 'red') {
-        event.target.style.backgroundColor = 'red';
-        console.log('Red ID', targetId.id);
-        this.updateBoard(targetId, 'red');
-        this.checkForWinner('red');
-        this.setState({color: 'yellow'});
-        console.log('Board', this.board);
-      }
-      if (this.state.color === 'yellow') {
-        event.target.style.backgroundColor = 'yellow';
-        console.log('Yellow ID', targetId);
-        this.updateBoard(targetId, 'yellow');
-        this.checkForWinner('yellow');
-        this.setState({color: 'red'});
-        console.log('Board', this.board);
-      }
-    }
-    console.log('getElementById', document.getElementById(event.target.id));
-    // console.log('target', event.target.class)
+  getColumnId(id) {
+    this.columnId = document.getElementById(id).id;
   }
 
+  placeMarker (color) {
+    var targetElement;
+
+    setTimeout(() => {targetElement = $(`#${document.getElementById(this.columnId).id}`).children()}, 5);
+
+    setTimeout(() => {
+      if (targetElement[5].children[0].style.backgroundColor === 'red' || targetElement[5].children[0].style.backgroundColor === 'yellow') {
+        if (targetElement[4].children[0].style.backgroundColor === 'red' || targetElement[4].children[0].style.backgroundColor === 'yellow') {
+          if (targetElement[3].children[0].style.backgroundColor === 'red' || targetElement[3].children[0].style.backgroundColor === 'yellow') {
+            if (targetElement[2].children[0].style.backgroundColor === 'red' || targetElement[2].children[0].style.backgroundColor === 'yellow') {
+              if (targetElement[1].children[0].style.backgroundColor === 'red' || targetElement[1].children[0].style.backgroundColor === 'yellow') {
+                if (targetElement[0].children[0].style.backgroundColor === 'red' || targetElement[0].children[0].style.backgroundColor === 'yellow') {
+                   alert('Column is full, choose another column.');
+                }
+                else {
+                  targetElement = targetElement[0].children[0]
+                  targetElement.style.backgroundColor = color;
+                  this.updateBoard(targetElement.id, color);
+                }
+              } else {
+                targetElement = targetElement[1].children[0]
+                targetElement.style.backgroundColor = color;
+                this.updateBoard(targetElement.id, color);
+              }
+            } else {
+              targetElement = targetElement[2].children[0]
+              targetElement.style.backgroundColor = color;
+              this.updateBoard(targetElement.id, color);
+            }
+          } else {
+            targetElement = targetElement[3].children[0]
+            targetElement.style.backgroundColor = color;
+            this.updateBoard(targetElement.id, color);
+          }
+        } else {
+          targetElement = targetElement[4].children[0]
+          targetElement.style.backgroundColor = color;
+          this.updateBoard(targetElement.id, color);
+        }
+      } else {
+        targetElement = targetElement[5].children[0]
+        targetElement.style.backgroundColor = color;
+        this.updateBoard(targetElement.id, color);
+      }
+    }, 10)
+  }
+
+  handleCircleClick(event) {
+    if (this.state.color === 'red') {
+      this.placeMarker('red');
+      setTimeout(() => this.checkForWinner('red'), 50);
+      this.setState({color: 'yellow'});
+      console.log('board', this.board)
+    }
+
+    if (this.state.color === 'yellow') {
+      this.placeMarker('yellow');
+      setTimeout(() => this.checkForWinner('yellow'), 50);
+      this.setState({color: 'red'});
+      console.log('board', this.board)
+    }
+}
   render() {
     return(
       <div>
         {this.columns.map(
-          i => <Column columnId={i} rows={this.rows} key={`Column${i}`} handleCircleClick={this.handleCircleClick}/>
+          i => <Column columnId={i} rows={this.rows} key={`Column${i}`} getColumnId={this.getColumnId} handleCircleClick={this.handleCircleClick}/>
         )}
       </div>
     )
