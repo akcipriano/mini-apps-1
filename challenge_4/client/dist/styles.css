@@ -2,10 +2,11 @@
   position: relative;
   float:none;
   border-style: solid;
-  height: 470px;
-  width: 470px;
-  border-color: #ffffff;
+  height: 550px;
+  width: 650px;
+  border-color: #fff;
   margin: auto;
+  text-align: center;
 }
 
 #header {
@@ -13,8 +14,8 @@
 }
 
 .circle {
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 80px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
@@ -22,8 +23,8 @@
 }
 
 .square {
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 80px;
   border-color: rgb(18, 96, 116);
   border-style: solid;
   background-color: rgb(18, 96, 116);
