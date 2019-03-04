@@ -241,37 +241,37 @@ class App extends React.Component {
                   targetElement = targetElement[0].children[0]
                   targetElement.style.backgroundColor = color;
                   this.updateBoard(targetElement.id, color);
-                  this.setState({tieCount: this.state.tieCount += 1});
+                  this.setState({tieCount: this.state.tieCount + 1});
                 }
               } else {
                 targetElement = targetElement[1].children[0]
                 targetElement.style.backgroundColor = color;
                 this.updateBoard(targetElement.id, color);
-                this.setState({tieCount: this.state.tieCount += 1});
+                this.setState({tieCount: this.state.tieCount + 1});
               }
             } else {
               targetElement = targetElement[2].children[0]
               targetElement.style.backgroundColor = color;
               this.updateBoard(targetElement.id, color);
-              this.setState({tieCount: this.state.tieCount += 1});
+              this.setState({tieCount: this.state.tieCount + 1});
             }
           } else {
             targetElement = targetElement[3].children[0]
             targetElement.style.backgroundColor = color;
             this.updateBoard(targetElement.id, color);
-            this.setState({tieCount: this.state.tieCount += 1});
+            this.setState({tieCount: this.state.tieCount + 1});
           }
         } else {
           targetElement = targetElement[4].children[0]
           targetElement.style.backgroundColor = color;
           this.updateBoard(targetElement.id, color);
-          this.setState({tieCount: this.state.tieCount += 1});
+          this.setState({tieCount: this.state.tieCount + 1});
         }
       } else {
         targetElement = targetElement[5].children[0]
         targetElement.style.backgroundColor = color;
         this.updateBoard(targetElement.id, color);
-        this.setState({tieCount: this.state.tieCount += 1});
+        this.setState({tieCount: this.state.tieCount + 1});
       }
     }, 10)
   }
